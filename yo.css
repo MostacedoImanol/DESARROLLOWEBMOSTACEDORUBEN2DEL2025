@@ -1,0 +1,56 @@
+/* Estilos para yo.html */
+
+/* Estilos generales para toda la página */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal para centrar el contenido */
+/* Usamos la etiqueta body como nuestro contenedor principal por ahora */
+body {
+    max-width: 800px; /* Ancho máximo para que no se estire demasiado en pantallas grandes */
+    margin: 20px auto; /* 'auto' en los lados izquierdo y derecho centra el elemento */
+    padding: 20px; /* Relleno interior para que el contenido no toque los bordes */
+    background-color: #fff;
+    border: 1px solid #ddd; /* Un borde sutil para ver la 'caja' del body */
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px; /* Espacio de relleno dentro del header */
+    text-align: center;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+}
+
+header h1 {
+    margin: 0; /* Quita el margen por defecto del h1 */
+}
+
+/* Estilo para las secciones dentro del main */
+main section {
+    padding: 20px; /* Relleno para cada sección */
+    margin-bottom: 20px; /* Margen inferior para separar las secciones */
+    border-bottom: 1px dotted #ccc; /* Una línea para separar visualmente */
+}
+
+main section:last-child {
+    border-bottom: none; /* No queremos la línea en la última sección */
+    margin-bottom: 0;
+}
+
+/* Estilos para el pie de página */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+}
