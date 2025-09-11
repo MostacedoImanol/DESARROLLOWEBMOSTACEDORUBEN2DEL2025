@@ -7,29 +7,33 @@
     
 </head>
 <body>
-    <form action = "formulario" method = "post">
-        
+
+    <form action="datos.php" method="post" autocomplete="on">
         <label for="nombres">Nombre:</label><br>
-        <input type="text" id = "nombres" name  = "nombre" value = ""><br> 
+        <input type="text" id="nombres" name="nombre" required><br>
 
         <label for="apellidos">Apellido:</label><br>
-        <input type="text" id = "apellidos" name  = "apellido"><br>
+        <input type="text" id="apellidos" name="apellido" required><br>
 
         <label for="sexo">Sexo:</label><br>
-        <input type="text" id = "sexo" name  ="sexo" value = ""><br>
+        <select id="sexo" name="sexo" required>
+            <option value="">Seleccione...</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+        </select><br>
 
         <label for="direcciones">Dirección:</label><br>
-        <input type  = "text" id = "direcciones" name = "direcciones" value = ""><br>
-
+        <input type="text" id="direcciones" name="direcciones" required><br>
 
         <label for="correos">Correo:</label><br>
-        <input type="text" id = "correos" name = "correo" value = ""><br>
+        <input type="email" id="correos" name="correo" required><br>
 
         <label for="celulares">Celular:</label><br>
-        <input type="text" id = "celulares" name= "celular" value = ""><br>
+        <input type="tel" id="celulares" name="celular" pattern="[0-9]{8,15}" required><br>
 
-
-</form>
+        <button type="submit">Enviar</button>
+    </form>
 
 
     

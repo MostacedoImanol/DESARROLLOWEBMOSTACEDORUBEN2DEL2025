@@ -3,50 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LABORATORIO2</title>
-</head>
-
-</html>
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <title>SUMADOR_DIGITOS</title>
 </head>
-
 <body>
-
-
-
-    <?php
-    
-    if (!isset($_GET['n']= null)) {
-        echo '<h1 class="error">tiene que haber un valor</h1>';
-    } else {
-        $n = $_GET['n'];
-        
-        if ($n < 0) {
-            echo '<h1 class="error">el numero tiene que ser mayor a cero</h1>';
-            echo '<h2 class="error2">Intentelo de nuevo !...';
+</head>
+<body>
+    <div class="container">
+        <?php
+        if (!isset($_GET['n']) || $_GET['n'] === '') {
+            echo '<div class="error">Debe ingresar un valor numérico.</div>';
         } else {
-      
-            $suma = 0;
-            $digitos = str_split($n);
-
-            foreach($digitos as $digito){
-
-                $suma += $digito;
+            $n = $_GET['n'];
+            if (!is_numeric($n) || $n < 0) {
+                echo '<div class="error">El número debe ser mayor o igual a cero.</div>';
+                echo '<div class="error2">¡Inténtelo de nuevo!</div>';
+            } else {
+                $suma = 0;
+                $digitos = str_split($n);
+                foreach ($digitos as $digito) {
+                    if (is_numeric($digito)) {
+                        $suma += (int)$digito;
+                    }
+                }
+                echo '<div class="Suma">La suma de los dígitos de <strong>' . htmlspecialchars($n) . '</strong> es: <span>' . $suma . '</span></div>';
             }
-            echo '<div class="Suma"><h1>La suma de los dígitos de '. $n.' es: '. $suma.'</h1></div>';
         }
-    }
-    ?>
+        ?>
+    </div>
+</body>
+</html>
+</body>
+</html>
 
 </body>
 

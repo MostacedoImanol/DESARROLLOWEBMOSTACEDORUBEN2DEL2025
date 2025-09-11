@@ -24,18 +24,40 @@ form {
 body{
     background-color: rgb(63, 63, 63);
 }
-.error{
-    color:rgb(233, 66, 66);
+.error {
+    color: #e74c3c;
+    background: #fff0f0;
+    border: 1px solid #e74c3c;
+    border-radius: 8px;
     text-align: center;
-    padding: 20%;
+    padding: 18px 24px;
+    margin: 30px auto;
+    max-width: 400px;
+    font-size: 1.2em;
+    box-shadow: 0 2px 8px rgba(231,76,60,0.08);
 }
-.error2{
-    color: rgb(90, 141, 141);
+.error2 {
+    color: #298d8d;
+    background: #e0f7fa;
+    border: 1px solid #298d8d;
+    border-radius: 8px;
     text-align: center;
-    padding: 30%;
+    padding: 14px 20px;
+    margin: 20px auto 30px auto;
+    max-width: 400px;
+    font-size: 1.1em;
+    box-shadow: 0 2px 8px rgba(41,141,141,0.08);
 }
-.Suma{
-    color: aliceblue;
-    padding: 20%;
+.Suma {
+    color: #222;
+    background: #b2f2e5;
+    border: 1px solid #298d8d;
+    border-radius: 8px;
     text-align: center;
+    padding: 18px 24px;
+    margin: 30px auto;
+    max-width: 400px;
+    font-size: 1.3em;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(41,141,141,0.08);
 }
