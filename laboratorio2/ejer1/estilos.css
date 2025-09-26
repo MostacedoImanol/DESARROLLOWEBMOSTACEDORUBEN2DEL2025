@@ -1,0 +1,41 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(90, 141, 141);
+    border-radius: 10px;
+    text-align: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8%;
+
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    margin: 3% 15%;
+}
+body{
+    background-color: rgb(63, 63, 63);
+}
+.error{
+    color:rgb(233, 66, 66);
+    text-align: center;
+    padding: 20%;
+}
+.error2{
+    color: rgb(90, 141, 141);
+    text-align: center;
+    padding: 30%;
+}
+.Suma{
+    color: aliceblue;
+    padding: 20%;
+    text-align: center;
+}
