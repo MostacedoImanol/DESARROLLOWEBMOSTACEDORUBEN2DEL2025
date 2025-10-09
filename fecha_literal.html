@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor de Fecha a Literal</title>
+</head>
+<body>
+
+    <h2>Conversión de Fecha a Texto</h2>
+
+    <div class="Botons_Cntrol">
+        <button id="miBton" onclick="solicitarYMostrarFecha()">PRESIONE Y CONVIERTA</button>
+    </div>
+
+    <script>
+        /**
+         * Convierte un número (día, año) a su representación textual en español.
+         */
+        function numeroATexto(num) {
+            const unidades = ["", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve"];
+            const decenas = ["", "", "veinte", "treinta", "cuarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"];
+
+            if (num === 0) return "";
+            if (num < 20) return unidades[num];
+            if (num < 100) {
+                let dec = Math.floor(num / 10);
+                let uni = num % 10;
+                let texto = decenas[dec];
+                if (uni > 0) {
+                    if (dec === 2) return "veinti" + unidades[uni]; 
+                    texto += " y " + unidades[uni]; 
+                }
+                return texto;
+            }
+
+            // Lógica simplificada para el año (asumiendo 2000s)
+            if (num >= 2000 && num <= 2999) {
+                let texto = "dos mil";
+                let resto = num % 1000;
+                if (resto > 0) {
+                     let ultimosDos = resto % 100;
+                     if (ultimosDos > 0) {
+                         texto += " " + numeroATexto(ultimosDos);
+                     }
+                }
+                return texto.trim();
+            }
+
+            return String(num);
+        }
+
+        /**
+         * Recibe una fecha en formato "dd/mm/aaaa" (cadena) y la devuelve en literal.
+         * @param {string} fecha La fecha en formato "dd/mm/aaaa".
+         * @returns {string} La fecha en formato literal.
+         */
+        function fechaLiteral(fecha) {
+            const meses = [
+                "", "enero", "febrero", "marzo", "abril", "mayo", "junio",
+                "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+            ];
+
+            const partes = fecha.split('/');
+            if (partes.length !== 3) {
+                return "Error: Formato de fecha incorrecto. Use 'dd/mm/aaaa'.";
+            }
+
+            const dia = parseInt(partes[0], 10);
+            const mes = parseInt(partes[1], 10);
+            const anio = parseInt(partes[2], 10);
+
+            if (isNaN(dia) || isNaN(mes) || isNaN(anio) || mes < 1 || mes > 12) {
+                return "Error: Los valores de la fecha no son válidos.";
+            }
+
+            let diaTexto = numeroATexto(dia);
+            const mesTexto = meses[mes];
+            const anioTexto = numeroATexto(anio);
+
+            // Caso especial: el día 1 se dice "primero"
+            if (dia === 1) {
+                diaTexto = "primero";
+            }
+
+            return `${diaTexto} de ${mesTexto} de ${anioTexto}`;
+        }
+
+
+        // --- Nueva Función para la Ejecución al Presionar el Botón ---
+
+        function solicitarYMostrarFecha() {
+            // 1. Solicitar la fecha al usuario mediante prompt
+            const fechaIngresada = prompt("Ingrese una fecha en formato dd/mm/aaaa (Ej: 08/10/2025):");
+
+            // 2. Verificar si el usuario ingresó algo o canceló
+            if (fechaIngresada !== null && fechaIngresada.trim() !== "") {
+                // 3. Llamar a la función
+                const resultadoLiteral = fechaLiteral(fechaIngresada.trim());
+                
+                // Capitalizar la primera letra del resultado para una mejor presentación
+                const resultadoFinal = resultadoLiteral.charAt(0).toUpperCase() + resultadoLiteral.slice(1);
+
+                // 4. Imprimir el resultado en la consola y en una alerta
+                console.log(`Fecha ingresada: ${fechaIngresada}`);
+                console.log(`Resultado Literal: ${resultadoFinal}`);
+                
+                alert(`La fecha literal es:\n\n${resultadoFinal}`);
+            } else {
+                console.log("Operación cancelada o fecha no ingresada.");
+            }
+        }
+    </script>
+    
+</body>
+</html>
