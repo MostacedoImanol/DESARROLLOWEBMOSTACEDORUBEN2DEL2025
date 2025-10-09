@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Compras Dinámica</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos del formulario de entrada */
+        #input-area {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #itemInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        #addButton {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-size: 16px;
+        }
+
+        #addButton:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Estilos de la lista */
+        #shoppingList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #shoppingList li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            background-color: #fff;
+        }
+
+        #shoppingList li:last-child {
+            border-bottom: none;
+        }
+
+        /* Estilos del botón de eliminar */
+        .delete-button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mi Lista de Compras 📝</h1>
+
+        <div id="input-area">
+            <input type="text" id="itemInput" placeholder="Añadir nuevo ítem (ej: leche, pan)">
+            
+            <button id="addButton" onclick="addItem()">Añadir</button>
+        </div>
+
+        <ul id="shoppingList">
+            </ul>
+    </div>
+
+    <script>
+        // JavaScript
+        const itemInput = document.getElementById('itemInput');
+        const shoppingList = document.getElementById('shoppingList');
+
+        // Escuchar la tecla "Enter" para añadir rápidamente
+        itemInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                addItem();
+            }
+        });
+
+        /**
+         * Añade un nuevo ítem a la lista de compras.
+         */
+        function addItem() {
+            // Obtener y limpiar el texto de entrada
+            const itemText = itemInput.value.trim();
+
+            // 1. Validar que la entrada no esté vacía
+            if (itemText === "") {
+                alert("Por favor, introduce un ítem para añadir.");
+                return;
+            }
+
+            // 2. Crear los elementos HTML necesarios
+            
+            // Elemento de lista (li)
+            const listItem = document.createElement('li');
+
+            // Span para el texto del ítem
+            const itemSpan = document.createElement('span');
+            itemSpan.textContent = itemText;
+
+            // Botón de eliminar
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.classList.add('delete-button');
+
+            // 3. Asignar la función de eliminar al botón
+            deleteButton.onclick = function() {
+                // Eliminar el ítem (el elemento padre 'li') de la lista
+                shoppingList.removeChild(listItem);
+            };
+
+            // 4. Construir la estructura del <li>
+            listItem.appendChild(itemSpan);
+            listItem.appendChild(deleteButton);
+
+            // 5. Añadir el <li> a la lista (<ul>)
+            shoppingList.appendChild(listItem);
+
+            // 6. Limpiar el campo de entrada para el siguiente ítem
+            itemInput.value = '';
+            itemInput.focus(); // Devolver el foco al campo de entrada
+        }
+    </script>
+
+</body>
+</html>

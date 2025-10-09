@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control de Tamaño de Imagen Dinámico</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #resizableImage {
+            width: 300px; /* Tamaño inicial */
+            height: auto;
+            border: 2px solid #3498db;
+            transition: width 0.3s ease; /* Transición suave para el cambio de tamaño */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Control de Tamaño de Imagen Dinámico</h1>
+
+    <div class="controls">
+        <label for="newSize">Paso de Cambio (px):</label>
+        <input type="number" id="newSize" value="50" min="1" placeholder="Ej: 50">
+        
+        <br><br>
+        
+        <button onclick="increaseSize()">Agrandar</button>
+        <button onclick="decreaseSize()">Reducir</button>
+    </div>
+
+    <img id="resizableImage" src="https://picsum.photos/300/200" alt="Una imagen aleatoria">
+
+    <script>
+        const imageElement = document.getElementById('resizableImage');
+        const sizeInput = document.getElementById('newSize');
+        const MIN_WIDTH = 50; // Ancho mínimo de la imagen
+
+        /**
+         * Función central que aplica el cambio de tamaño.
+         * @param {number} multiplier - 1 para agrandar, -1 para reducir.
+         */
+        function applySizeChange(multiplier) {
+            // 1. Obtener la cantidad del cambio desde el input numérico
+            let changeAmount = parseInt(sizeInput.value);
+
+            // Validar que la cantidad de cambio sea un número positivo y válido
+            if (isNaN(changeAmount) || changeAmount <= 0) {
+                alert("Por favor, ingrese una cantidad de cambio válida y positiva en el cuadro numérico.");
+                return;
+            }
+
+            // 2. Obtener el ancho actual de la imagen
+            let currentWidth = imageElement.offsetWidth;
+            
+            // 3. Calcular el nuevo ancho (current + (cantidad * multiplicador))
+            let newWidth = currentWidth + (changeAmount * multiplier);
+
+            // 4. Aplicar límite mínimo al reducir
+            if (newWidth < MIN_WIDTH) {
+                newWidth = MIN_WIDTH;
+                if (multiplier === -1) { // Solo mostrar la alerta al intentar reducir
+                    alert("La imagen ha alcanzado su tamaño mínimo (" + MIN_WIDTH + "px).");
+                }
+            }
+
+            // 5. Aplicar el nuevo ancho
+            imageElement.style.width = newWidth + 'px';
+        }
+
+        /**
+         * Maneja el clic en el botón "Agrandar".
+         */
+        function increaseSize() {
+            applySizeChange(1); // Multiplicador positivo para sumar
+        }
+
+        /**
+         * Maneja el clic en el botón "Reducir".
+         */
+        function decreaseSize() {
+            applySizeChange(-1); // Multiplicador negativo para restar
+        }
+        
+    </script>
+
+</body>
+</html>
