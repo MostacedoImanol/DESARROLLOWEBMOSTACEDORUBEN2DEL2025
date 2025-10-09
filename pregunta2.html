@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Addition Table Generator</title>
+    <style>
+        /* CSS is included here for simplicity, but can be in a separate file */
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Class to apply the color change */
+        .result-cell {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Addition Table Generator</h1>
+
+    <label for="numberInput">Enter a number:</label>
+    <input type="number" id="numberInput" value="3" min="0">
+    <button onclick="generateTable()">Generate Table</button>
+
+    <table id="additionTable">
+        <thead>
+            <tr>
+                <th>Operador 1</th>
+                <th>Operación</th>
+                <th>Operador 2</th>
+                <th>=</th>
+                <th id="resultHeader">Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Color Changer for Result Column</h2>
+    <label for="colorInput">Enter a color (e.g., red, #00ff00, rgb(0,0,255)):</label>
+    <input type="text" id="colorInput" value="blue">
+    <button onclick="changeResultColor()">Change Result Color</button>
+
+    <script>
+        // JavaScript code will be inserted here
+    
+        // Function for Part 1: Generate the addition table
+function generateTable() {
+    const numberInput = document.getElementById('numberInput');
+    const tableBody = document.querySelector('#additionTable tbody');
+
+    // Get the user's number, converting it to an integer
+    const number = parseInt(numberInput.value);
+
+    // Clear any previous rows in the table body
+    tableBody.innerHTML = '';
+
+    // Validate the input
+    if (isNaN(number)) {
+        alert("Please enter a valid number.");
+        return;
+    }
+
+    // Loop from 1 to 10 to build the table rows
+    for (let i = 1; i <= 10; i++) {
+        const result = number + i;
+
+        // Create a new table row element
+        const row = tableBody.insertRow();
+
+        // 1. Operador 1 (The fixed number)
+        let cell1 = row.insertCell();
+        cell1.textContent = number;
+
+        // 2. Operación (+)
+        let cell2 = row.insertCell();
+        cell2.textContent = '+';
+
+        // 3. Operador 2 (The number from 1 to 10)
+        let cell3 = row.insertCell();
+        cell3.textContent = i;
+
+        // 4. Equals (=)
+        let cell4 = row.insertCell();
+        cell4.textContent = '=';
+
+        // 5. Resultado (The calculated sum)
+        let cell5 = row.insertCell();
+        cell5.textContent = result;
+        // Add a class to easily target this column for color change (Part 2)
+        cell5.classList.add('result-cell');
+    }
+}
+
+// Function for Part 2: Change the background color of the result column
+function changeResultColor() {
+    const colorInput = document.getElementById('colorInput');
+    const newColor = colorInput.value;
+
+    // Get all cells with the 'result-cell' class (from the table body)
+    const resultCells = document.querySelectorAll('.result-cell');
+    
+    // Also change the header color
+    const resultHeader = document.getElementById('resultHeader');
+    
+    // Apply the new color to all result cells
+    resultCells.forEach(cell => {
+        cell.style.backgroundColor = newColor;
+    });
+    
+    // Apply the new color to the header cell
+    if (resultHeader) {
+         resultHeader.style.backgroundColor = newColor;
+    }
+}
+
+// Optional: Generate the table on page load with the default value
+window.onload = generateTable;
+    </script>
+
+</body>
+</html>
